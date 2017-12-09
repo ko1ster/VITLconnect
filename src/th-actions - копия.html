@@ -1,0 +1,105 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/google-youtube/google-youtube.html">
+<!--
+  Simple yet informative 404 page.
+-->
+<dom-module id="th-actions">
+  <template>
+    <style>
+      :host {
+        display: block;
+        text-align: left;
+        margin-left: 10px;
+        padding: 10px 20px;
+      }
+
+      .mid {
+      margin-left: 5px;
+      margin-top: 20px;
+      margin-right: 100px;
+    }
+
+    .heading {
+      text-align: left;
+    }
+
+      h3 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        margin: var(--app-unit-sm);
+        font-size: var(--app-unit-xl);
+      }
+
+      h3 iron-icon {
+        width: var(--app-unit-xl);
+        height: var(--app-unit-xl);
+
+        transform: translateY(5px);
+      }
+    </style>
+
+
+    <p>
+      Overview data is updated daily and so activity from the last 24 hours may not be displayed. <a href="/">Head back to home.</a>
+    </p>
+
+    <!--<div>Hello from <span>{{foo}}</span></div>-->
+    <h1 class="heading">ВСЕ КАМПАНИИ</h1>
+    <paper-material class="mid" elevation="1">
+      <google-youtube
+        class="yt"
+        video-id="EmI8krZboGY"
+        height="270px"
+        width="480px"
+        rel="0"
+        start="5"
+        autoplay="0">
+      </google-youtube>
+      <paper-material>
+
+<iron-image src="/images/projects.png"></iron-image>
+
+        <h2>POLYMER TUOTRIALS</h2>
+        <i>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</i>
+      </paper-material>
+    </paper-material>
+    <br>
+    <br>
+    <br>
+    <h2>ДЕЙСТВИЯ</h2>
+  <paper-material class="mid" elevation="1">
+    <iron-image src="/images/actions.png"></iron-image>
+  </paper-material>
+
+  <paper-material class="mid" elevation="1">
+    <iron-image src="/images/activeproducts.png"></iron-image>
+  </paper-material>
+
+  <paper-material class="mid" elevation="2">
+    <iron-image src="/images/locations.png"></iron-image>
+  </paper-material>
+<br>
+<br>
+<br>
+  <h2>ПОЛЬЗОВАТЕЛИ</h2>
+  <paper-material class="mid" elevation="2">
+    <iron-image src="/images/users.png"></iron-image>
+  </paper-material>
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'th-actions'
+    });
+  </script>
+</dom-module>

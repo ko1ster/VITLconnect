@@ -1,0 +1,132 @@
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles-classes.html">
+
+<link rel="import" href="../bower_components/neon-animation/neon-animation.html">
+
+<link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
+
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="th-loader.html">
+
+<!--
+  Login splash screen, visible when app is not ready,
+  e.g. in loading state, or have no authenticated user available.
+
+  Overlays the whole screen.
+-->
+<dom-module id="th-login">
+  <template>
+    <style include="iron-flex">
+      :host {
+        @apply(--layout);
+        @apply(--layout-fit);
+        @apply(--layout-center-center);
+
+        position: fixed;
+
+        z-index: 103;
+        background: var(--paper-grey-100);
+      }
+
+      #loginForm {
+        max-width: 400px;
+        width: 90vw;
+      }
+
+      paper-fab.facebook {
+        color: white;
+        background: #3b5998;
+      }
+    </style>
+
+    <paper-dialog modal id="loginForm" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+      <style>
+        .buttons {
+          margin-top: 32px !important;
+          margin-bottom: 8px !important;
+        }
+      </style>
+      <h2>Login</h2>
+      <form id="credentialsForm" name="th-login-form">
+        <gold-email-input label="Email" value="{{creds.email}}" name="email" autocomplete="email"></gold-email-input>
+        <paper-input label="Password" type="password" value="{{creds.password}}" name="password"></paper-input>
+        <div class="buttons layout horizontal">
+          <paper-fab id="facebookLogin" class="facebook" mini icon="th:facebook" on-tap="_loginWithFacebook"></paper-fab>
+          <span class="flex"></span>
+          <paper-button type="submit" noink on-tap="_loginWithCreds">Login</paper-button>
+        </div>
+      </form>
+    </paper-dialog>
+
+    <th-loader hidden$="{{!loading}}" size="80px"></th-loader>
+  </template>
+  <script>
+    Polymer({
+      is: 'th-login',
+
+      properties: {
+        /**
+         * Defines if loader visible
+         */
+        loading: {
+          type: Boolean,
+          value: true
+        },
+
+        /**
+         * Stores creds before dispatching them in event
+         */
+        creds: {
+          type: Object,
+          value: {}
+        }
+      },
+
+      /**
+       * Opens login modal, allowing to login either with User creds
+       * or via facebook.
+       */
+      open: function() {
+        this.$.loginForm.open();
+      },
+
+      /**
+       * Closes modal
+       */
+      close: function() {
+        this.$.loginForm.close();
+      },
+
+      /**
+       * Sets 'login with facebook' button visibility based on given
+       * boolean
+       */
+      setFacebookAvailable: function(isFacebookAvailable) {
+        this.$.facebookLogin.style.visibility = isFacebookAvailable ? 'visible' : 'hidden';
+      },
+
+      /**
+       * Dispatches login with given creds
+       *
+       * @private
+       */
+      _loginWithCreds: function() {
+        this.fire('login', this.creds);
+      },
+
+      /**
+       * Dispatches login with facebook
+       *
+       * @private
+       */
+      _loginWithFacebook: function() {
+        this.fire('login', 'facebook');
+      }
+    });
+  </script>
+</dom-module>

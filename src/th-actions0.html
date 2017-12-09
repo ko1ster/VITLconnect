@@ -1,0 +1,37 @@
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<!--
+  Thngs page.
+
+  Renders list of thngs based on current search query,
+  allows to open thng details. Support clean loading straight to details page.
+-->
+<dom-module id="th-actions">
+  <template>
+    <div>Actions<span>{{foo}}</span></div>
+
+    <style include="shared-styles iron-flex">
+      :host {
+        @apply(--app-page);
+        @apply(--layout-block);
+      }
+    </style>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'th-actions',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'bar',
+          notify: true
+        }
+      }
+});
+}();
+
+  </script>
+</dom-module>

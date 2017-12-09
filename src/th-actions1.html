@@ -1,0 +1,74 @@
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="youtube-element/youtube-element.html">
+
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="th-thng-list.html">
+<link rel="import" href="th-thng-details.html">
+
+<!--
+  Thngs page.
+
+  Renders list of thngs based on current search query,
+  allows to open thng details. Support clean loading straight to details page.
+-->
+<dom-module id="th-actions">
+  <template>
+    <style include="shared-styles iron-flex">
+      :host {
+        @apply(--app-page);
+        @apply(--layout-block);
+      }
+    </style>
+
+    <app-route
+      route="{{route}}"
+      pattern="/:id"
+
+      data="{{routeData}}"
+      active="{{detailsActive}}"
+    ></app-route>
+
+    <!--<div>Hello from <span>{{foo}}</span></div>-->
+    <h1 class="heading">MY YOUTUBE VIDEOS</h1>
+    <paper-material class="mid" elevation="1">
+      <google-youtube
+        class="yt"
+        video-id="EmI8krZboGY"
+        height="270px"
+        width="480px"
+        rel="0"
+        start="5"
+        autoplay="0">
+      </google-youtube>
+      <paper-material>
+
+        <h2>POLYMER TUOTRIALS</h2>
+        <i>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</i>
+      </paper-material>
+    </paper-material>
+
+  </template>
+
+  <script>
+  (function () {
+    Polymer({
+      is: 'youtube-element',
+
+      properties: {
+        foo: {
+          type: String,
+          value: 'bar',
+          notify: true
+        }
+      }
+    });
+  })();
+</script>
+</dom-module>
